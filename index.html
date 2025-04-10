@@ -45,7 +45,7 @@
         </select>
       </div>
 
-      <div>
+      <div id="amountOwedContainer" class="hidden">
         <label for="amountOwed" class="block font-semibold text-gray-700">If yes, amount owed</label>
         <input type="number" id="amountOwed" name="amountOwed" step="0.01" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
       </div>
@@ -90,5 +90,19 @@
 	  
     </form>
   </div>
+  
+  <script>
+      document.getElementById('renting').addEventListener('change', function () {
+        const amountContainer = document.getElementById('amountOwedContainer');
+        if (this.value === 'Yes') {
+          amountContainer.classList.remove('hidden');
+          document.getElementById('amountOwed').required = true;
+        } else {
+          amountContainer.classList.add('hidden');
+          document.getElementById('amountOwed').required = false;
+        }
+      });
+  </script>
+	
 </body>
 </html>
