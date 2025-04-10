@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Day Vendor Check-in</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-amber-500 via-orange-200 to-fuchsia-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white bg-opacity-80 backdrop-blur-md shadow-xl rounded-2xl p-8 w-full max-w-xl h-[85vh] overflow-y-auto">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Market Day Vendor Check-in Form</h2>
+    <form class="space-y-4">
+
+      <div>
+        <label for="vendorId" class="block font-semibold text-gray-700">Vendor ID<span class="text-red-500"> *</span></label>
+        <input type="text" id="vendorId" name="vendorId" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+      </div>
+
+      <div>
+        <label for="marketDate" class="block font-semibold text-gray-700">Market Date<span class="text-red-500"> *</span></label>
+        <input type="date" id="marketDate" name="marketDate" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+      </div>
+
+      <div>
+        <label for="checkinTime" class="block font-semibold text-gray-700">Time of Check-in<span class="text-red-500"> *</span></label>
+        <input type="time" id="checkinTime" name="checkinTime" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+      </div>
+
+      <div>
+        <label for="firstName" class="block font-semibold text-gray-700">Vendor First Name<span class="text-red-500"> *</span></label>
+        <input type="text" id="firstName" name="firstName" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+      </div>
+
+      <div>
+        <label for="lastName" class="block font-semibold text-gray-700">Vendor Last Name<span class="text-red-500"> *</span></label>
+        <input type="text" id="lastName" name="lastName" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+      </div>
+
+      <div>
+        <label for="renting" class="block font-semibold text-gray-700">Renting Table, Tent and Chairs?<span class="text-red-500"> *</span></label>
+        <select id="renting" name="renting" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+          <option value="">- Select -</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="amountOwed" class="block font-semibold text-gray-700">If yes, amount owed</label>
+        <input type="number" id="amountOwed" name="amountOwed" step="0.01" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+      </div>
+
+      <div>
+        <label for="paidOnsite" class="block font-semibold text-gray-700">Paid onsite?<span class="text-red-500"> *</span></label>
+        <select id="paidOnsite" name="paidOnsite" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+          <option value="">- Select -</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="paymentType" class="block font-semibold text-gray-700">Payment Type</label>
+        <select id="paymentType" name="paymentType" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+          <option value="">- Select -</option>
+          <option value="Cash">Cash</option>
+          <option value="Credit">Credit</option>
+          <option value="Debit">Debit</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="rentalIds" class="block font-semibold text-gray-700">Rental Item ID#s</label>
+        <input type="text" id="rentalIds" name="rentalIds" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+      </div>
+
+      <div>
+        <label for="produceWeight" class="block font-semibold text-gray-700">Total Pounds of Produce Brought</label>
+        <input type="number" id="produceWeight" name="produceWeight" step="0.1" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+      </div>
+
+      <div>
+        <label for="notes" class="block font-semibold text-gray-700">Other/Notes</label>
+        <textarea id="notes" name="notes" rows="3" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+      </div>
+
+      <div class="flex justify-center">
+        <button type="submit" class="px-6 py-3 bg-gradient-to-r from-orange-400 to-fuchsia-300 text-white font-semibold rounded-full hover:from-fuchsia-300 hover:to-orange-400 transition-transform transform hover:scale-105">Submit</button>
+      </div>
+	  
+    </form>
+  </div>
+</body>
+</html>
