@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,101 +9,262 @@
 </head>
 <body class="bg-gradient-to-br from-amber-500 via-orange-200 to-fuchsia-100 min-h-screen flex items-center justify-center">
   <div class="bg-white bg-opacity-80 backdrop-blur-md shadow-xl rounded-2xl p-8 w-full max-w-xl h-[85vh] overflow-y-auto">
-    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Market Day Vendor Check-in Form</h2>
-    <form class="space-y-4">
-
-      <div>
-        <label for="vendorId" class="block font-semibold text-gray-700">Vendor ID<span class="text-red-500"> *</span></label>
-        <input type="text" id="vendorId" name="vendorId" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
-      </div>
-
-      <div>
-        <label for="marketDate" class="block font-semibold text-gray-700">Market Date<span class="text-red-500"> *</span></label>
-        <input type="date" id="marketDate" name="marketDate" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
-      </div>
-
-      <div>
-        <label for="checkinTime" class="block font-semibold text-gray-700">Time of Check-in<span class="text-red-500"> *</span></label>
-        <input type="time" id="checkinTime" name="checkinTime" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
-      </div>
-
-      <div>
-        <label for="firstName" class="block font-semibold text-gray-700">Vendor First Name<span class="text-red-500"> *</span></label>
-        <input type="text" id="firstName" name="firstName" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
-      </div>
-
-      <div>
-        <label for="lastName" class="block font-semibold text-gray-700">Vendor Last Name<span class="text-red-500"> *</span></label>
-        <input type="text" id="lastName" name="lastName" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
-      </div>
-
-      <div>
-        <label for="renting" class="block font-semibold text-gray-700">Renting Table, Tent and Chairs?<span class="text-red-500"> *</span></label>
-        <select id="renting" name="renting" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
-          <option value="">- Select -</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-
-      <div id="amountOwedContainer" class="hidden">
-        <label for="amountOwed" class="block font-semibold text-gray-700">If yes, amount owed</label>
-        <input type="number" id="amountOwed" name="amountOwed" step="0.01" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
-      </div>
-
-      <div>
-        <label for="paidOnsite" class="block font-semibold text-gray-700">Paid onsite?<span class="text-red-500"> *</span></label>
-        <select id="paidOnsite" name="paidOnsite" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
-          <option value="">- Select -</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="paymentType" class="block font-semibold text-gray-700">Payment Type</label>
-        <select id="paymentType" name="paymentType" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
-          <option value="">- Select -</option>
-          <option value="Cash">Cash</option>
-          <option value="Credit">Credit</option>
-          <option value="Debit">Debit</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="rentalIds" class="block font-semibold text-gray-700">Rental Item ID#s</label>
-        <input type="text" id="rentalIds" name="rentalIds" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
-      </div>
-
-      <div>
-        <label for="produceWeight" class="block font-semibold text-gray-700">Total Pounds of Produce Brought</label>
-        <input type="number" id="produceWeight" name="produceWeight" step="0.1" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
-      </div>
-
-      <div>
-        <label for="notes" class="block font-semibold text-gray-700">Other/Notes</label>
-        <textarea id="notes" name="notes" rows="3" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
-      </div>
-
-      <div class="flex justify-center">
-        <button type="submit" class="px-6 py-3 bg-gradient-to-r from-orange-400 to-fuchsia-300 text-white font-semibold rounded-full hover:from-fuchsia-300 hover:to-orange-400 transition-transform transform hover:scale-105">Submit</button>
-      </div>
-	  
-    </form>
+  <div id="successMessage" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4" role="alert">
+		<strong class="font-bold">Success!</strong>
+		<span class="block sm:inline">Your form was submitted successfully.</span>
   </div>
-  
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Market Day Vendor Check-in Form</h2>
+    <form class="space-y-4" id="checkInForm" onsubmit="storeData(event)">
+
+	  <div>
+		<label for="vendorPin" class="block font-semibold text-gray-700">Vendor PIN<span class="text-red-500"> *</span></label>
+		<input type="text" id="vendorPin" name="vendorPin" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" onchange="fetchVendorId()">
+	  </div>
+	  
+	  <div>
+		<label for="vendorId" class="block font-semibold text-gray-700">Vendor ID<span class="text-red-500"> *</span></label>
+		<div class="relative">
+			<input type="text" id="vendorId" name="vendorId" readonly class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" data-error="Vendor PIN not found. Please check and try again.">
+			<div id="vendorSpinner" class="absolute right-3 top-2.5 hidden">
+				<svg class="animate-spin h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+				  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+				  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+				</svg>
+			</div>
+		</div>
+	  </div>
+	  
+	  <div>
+		<label for="vendorName" class="block font-semibold text-gray-700">Vendor Business Name<span class="text-red-500"> *</span></label>
+		<input type="text" id="vendorName" name="vendorName" readonly class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" readonly>
+	  </div>
+
+	  <div>
+		<label for="vendorType" class="block font-semibold text-gray-700">Vendor Type<span class="text-red-500"> *</span></label>
+		<input type="text" id="vendorType" name="vendorType" class="w-full p-2 border rounded bg-white" readonly>
+	  </div>
+
+	  <div>
+		<label for="marketDate" class="block font-semibold text-gray-700">Market Date<span class="text-red-500"> *</span></label>
+		<input type="date" id="marketDate" name="marketDate" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+	  </div>
+
+	  <div>
+		<label for="checkType" class="block font-semibold text-gray-700">Are you checking-in or checking-out?<span class="text-red-500"> *</span></label>
+		<select id="checkType" name="checkType" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+		  <option value="Check-in">Check-in</option>
+		</select>
+	  </div>
+
+	  <div>
+		<label for="checkinTime" class="block font-semibold text-gray-700">Time of Check-in<span class="text-red-500"> *</span></label>
+		<input type="time" id="checkinTime" name="checkinTime" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+	  </div>
+
+	  <div>
+		<label for="renting" class="block font-semibold text-gray-700">Are you renting equipment?<span class="text-red-500"> *</span></label>
+		<select id="renting" name="renting" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+		  <option value="">- Select -</option>
+		  <option value="Yes">Yes</option>
+		  <option value="No">No</option>
+		</select>
+	  </div>
+
+	  <div id="amountOwedContainer" class="hidden">
+		<label for="amountOwed" class="block font-semibold text-gray-700">Total Amount Owed Today ($)</label>
+		<input type="text" id="amountOwed" name="amountOwed" step="0.01" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+	  </div>
+
+	  <div id="equipmentDetails" class="hidden">
+		<label class="block font-semibold text-gray-700 mb-2">Item IDs and Conditions</label>
+		<div id="equipmentCards" class="space-y-2"></div>
+	  </div>
+
+	  <div id="paymentSection" class="hidden">
+		<div>
+		  <label for="paidOnsite" class="block font-semibold text-gray-700">Paid onsite?<span class="text-red-500"> *</span></label>
+		  <select id="paidOnsite" name="paidOnsite" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+			<option value="">- Select -</option>
+			<option value="Yes">Yes</option>
+			<option value="No">No</option>
+		  </select>
+		</div>
+
+		<div>
+		  <label for="paymentType" class="block font-semibold text-gray-700">Payment Type</label>
+		  <select id="paymentType" name="paymentType" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+			<option value="">- Select -</option>
+			<option value="Credit">Credit</option>
+			<option value="Debit">Debit</option>
+		  </select>
+		</div>
+	  </div>
+
+	  <div id="produceWeightContainer" class="hidden">
+		<label for="produceWeight" class="block font-semibold text-gray-700">Total Pounds of Produce Brought</label>
+		<input type="number" id="produceWeight" name="produceWeight" step="0.1" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+	  </div>
+
+	  <div>
+		<label for="comments" class="block font-semibold text-gray-700">Is there any other information you would like to share?</label>
+		<textarea id="comments" name="comments" rows="3" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+	  </div>
+
+	  <div class="flex justify-center">
+		<button type="submit" class="px-6 py-3 bg-gradient-to-r from-orange-400 to-fuchsia-300 text-white font-semibold rounded-full hover:from-fuchsia-300 hover:to-orange-400 transition-transform transform hover:scale-105">Submit</button>
+	  </div>
+
+	</form>
+  </div>
+
   <script>
-      document.getElementById('renting').addEventListener('change', function () {
-        const amountContainer = document.getElementById('amountOwedContainer');
-        if (this.value === 'Yes') {
-          amountContainer.classList.remove('hidden');
-          document.getElementById('amountOwed').required = true;
-        } else {
-          amountContainer.classList.add('hidden');
-          document.getElementById('amountOwed').required = false;
-        }
-      });
-  </script>
+    document.getElementById('renting').addEventListener('change', function () {
+      const show = this.value === 'Yes';
+      document.getElementById('amountOwedContainer').classList.toggle('hidden', !show);
+      document.getElementById('equipmentDetails').classList.toggle('hidden', !show);
+      document.getElementById('paymentSection').classList.toggle('hidden', !show);
+      document.getElementById('amountOwed').required = show;
+
+      const cardsContainer = document.getElementById('equipmentCards');
+      cardsContainer.innerHTML = '';
+
+      if (show) {
+        const items = [
+          { name: 'Table', count: 1 },
+          { name: 'Tent', count: 1 },
+          { name: 'Chair', count: 2 },
+          { name: 'Weight', count: 4 }
+        ];
+        const conditions = ['Excellent', 'Fair', 'Poor'];
+
+        items.forEach(item => {
+          for (let i = 1; i <= item.count; i++) {
+            const div = document.createElement('div');
+            div.className = 'flex justify-between items-center bg-white border p-2 rounded';
+            div.innerHTML = `
+              <span class="text-sm">${item.name} ${i}</span>
+			  <input type="text" name="itemId_${item.name.toLowerCase()}_${i}" id="itemId" class="border rounded p-1" placeholder="Item ID">
+              <select name="condition_${item.name.toLowerCase()}_${i}" id="itemCondition" class="border rounded p-1">
+                <option value="">- Condition -</option>
+                ${conditions.map(c => `<option value="${c}">${c}</option>`).join('')}
+              </select>
+            `;
+            cardsContainer.appendChild(div);
+          }
+        });
+      }
+    });
 	
+	function fetchVendorId() {
+		const vendorPin = document.getElementById('vendorPin').value;
+		const scriptUrl = 'https://script.google.com/macros/s/AKfycbwtaIkKrGAlSkUjrWUc_nYgwS9Nd1LqClu9AsgZHD4BNDmsuxXdaWWVrGQVFpc8enOUEA/exec';
+	    const spinner = document.getElementById('vendorSpinner');
+		const vendorInput = document.getElementById('vendorId');
+		const vendorType = document.getElementById('vendorType');
+		const vendorName = document.getElementById('vendorName');
+
+			spinner.classList.remove('hidden');
+  			vendorInput.value = '';
+			vendorInput.setCustomValidity(""); // Clear old error
+ 			vendorInput.reportValidity();      // Reset UI
+
+		fetch(`${scriptUrl}?individualid=${encodeURIComponent(vendorPin)}`)
+			.then(res => res.json())
+			.then(data => {
+				if (data) {
+				  if (data.vendorId) {
+					vendorInput.value = data.vendorId;
+					vendorInput.setCustomValidity(""); // Valid
+				  } if (data.vendorType) {
+					if (data.vendorType === 'FARM') {
+						vendorType.value = 'Farmer';
+					} else if (data.vendorType === 'HOT') {
+						vendorType.value = 'Hot Food Vendor';
+					} else if (data.vendorType === 'VAP') {
+						vendorType.value = 'Value Added Producer';
+					} else if (data.vendorType === 'ENT') {
+						vendorType.value = 'Entertainer';
+					} else if (data.vendorType === 'EDU') {
+						vendorType.value = 'Educator';
+					} else if (data.vendorType === 'RETAIL') {
+						vendorType.value = 'Non-Food Retailer (Clothing, jewelry, etc)';
+					} else {
+						vendorType.value = 'Other';
+					}
+					toggleProduceFields();
+				  }	if (data.vendorName) {
+					vendorName.value = data.vendorName;
+				  }
+				}	else {
+					vendorInput.value = '';
+					vendorInput.setCustomValidity(vendorInput.getAttribute('data-error'));
+					vendorInput.reportValidity();
+				}
+			})
+			.catch(err => console.error("Fetch error", err))
+			.finally(() => {
+				spinner.classList.add('hidden');
+			});
+	}
+
+    function toggleProduceWeight() {
+      document.getElementById('produceWeightContainer').classList.toggle('hidden', this.value !== 'Farmer');
+    }
+	
+	function storeData(e) {
+		const form = document.getElementById("checkInForm");
+        const formData = new FormData(form);		
+		
+		// Extract produce entries from cards
+		const itemCards = document.querySelectorAll('#equipmentCards > div');
+		const itemEntries = [];
+		itemCards.forEach(card => {
+			const itemId = card.querySelector('#itemId')?.value || '';
+			const itemCondition = card.querySelector('#itemCondition')?.value || '';
+			  produceEntries.push({
+				id: itemId,
+				condition: itemCondition
+			  });
+		});
+
+		const data = {};
+		formData.forEach((value, key) => {
+			data[key] = value;
+		});
+
+		data.itemCards = itemCards;
+
+		sendData(data);
+    }
+	
+	function sendData(data) {
+		
+		document.getElementById("successMessage").classList.remove("hidden");
+		  
+		document.getElementById("checkInForm").reset();
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+
+		fetch('https://script.google.com/macros/s/AKfycbwOeS2Xak_ij6oEb7fa24wrdj-atWlU6vd8fpTa87pWmACXniuYec5HwHrqtUG193Qf/exec', {
+		  method: 'POST',
+		  headers: {
+			'Content-Type': 'text/plain;charset=utf-8',
+		  },
+		  body: JSON.stringify(data),
+		})
+		.then(response => response.text())
+		.then(result => {
+		  console.log('Success:', result);
+								
+		  setTimeout(function() {						
+			document.getElementById("successMessage").classList.add("hidden");
+		  }, 5000);
+		})
+		.catch(error => {
+		  console.error('Error:', error);
+		  // Handle the error here
+		});                
+	}
+  </script>
+
 </body>
 </html>
