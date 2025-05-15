@@ -221,7 +221,7 @@
 		itemCards.forEach(card => {
 			const itemId = card.querySelector('#itemId')?.value || '';
 			const itemCondition = card.querySelector('#itemCondition')?.value || '';
-			  produceEntries.push({
+			  itemEntries.push({
 				id: itemId,
 				condition: itemCondition
 			  });
@@ -232,7 +232,7 @@
 			data[key] = value;
 		});
 
-		data.itemCards = itemCards;
+		data.itemCards = itemEntries;
 
 		sendData(data);
     }
