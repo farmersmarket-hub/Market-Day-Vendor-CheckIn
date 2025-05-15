@@ -191,7 +191,7 @@
 					} else {
 						vendorType.value = 'Other';
 					}
-					toggleProduceFields();
+					toggleProduceWeight();
 				  }	if (data.vendorName) {
 					vendorName.value = data.vendorName;
 				  }
@@ -208,7 +208,7 @@
 	}
 
     function toggleProduceWeight() {
-      document.getElementById('produceWeightContainer').classList.toggle('hidden', this.value !== 'Farmer');
+      document.getElementById('produceWeightContainer').classList.toggle('hidden', document.getElementById('vendorType').value !== 'Farmer');
     }
 	
 	function storeData(e) {
